@@ -21,7 +21,8 @@ import br.com.flat.flatapi.service.PessoaService;
 @RestController
 @RequestMapping("/api/pessoa")
 public class PessoaController {
-
+	
+	
 	@Autowired
 	private PessoaService pessoaService;
 
@@ -41,6 +42,12 @@ public class PessoaController {
 
 	@PostMapping("/criarPessoa")
 	public Pessoa criarPessoa(@Valid @RequestBody Pessoa pessoa) {
+		return pessoaService.save(pessoa);
+	}
+	
+	@PostMapping("/uploadFile")
+	public Pessoa uploadFile(@Valid @RequestBody Pessoa pessoa) {
+		System.out.println("entrando no metodo.");
 		return pessoaService.save(pessoa);
 	}
 
@@ -63,4 +70,7 @@ public class PessoaController {
 		pessoaService.deletar(pessoa);
 		return ResponseEntity.ok().build();
 	}
+	
+	
+	
 }

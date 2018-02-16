@@ -12,3 +12,4 @@ public class FlatApiApplication {
 		SpringApplication.run(FlatApiApplication.class, args);
 	}
 }
+
