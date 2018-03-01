@@ -1,5 +1,6 @@
 package br.com.flat.flatapi.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.flat.flatapi.model.Pessoa;
+import br.com.flat.flatapi.model.Profissao;
 import br.com.flat.flatapi.service.PessoaService;
+import br.com.flat.flatapi.service.ProfissaoService;
 
 @RestController
 @RequestMapping("/api/pessoa")
@@ -25,6 +28,9 @@ public class PessoaController {
 	
 	@Autowired
 	private PessoaService pessoaService;
+	
+	@Autowired
+	private ProfissaoService profissaoService;
 
 	@GetMapping("/pessoas")
 	public List<Pessoa> getAllPessoas() {
@@ -42,6 +48,8 @@ public class PessoaController {
 
 	@PostMapping("/criarPessoa")
 	public Pessoa criarPessoa(@Valid @RequestBody Pessoa pessoa) {
+		pessoa.setDataCadastro(LocalDate.now());
+		pessoa.setSituacao(1);
 		return pessoaService.save(pessoa);
 	}
 	
@@ -71,6 +79,9 @@ public class PessoaController {
 		return ResponseEntity.ok().build();
 	}
 	
-	
+	@GetMapping("/getAllProfissao")
+	public List<Profissao> getAllProfissao() {
+		return profissaoService.getAll();
+	}
 	
 }

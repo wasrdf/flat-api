@@ -5,14 +5,11 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ManyToAny;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -34,13 +31,12 @@ public class Pessoa {
 	private String tipoImg;
 	@Column(name = "data_cadastro")
 	private LocalDate dataCadastro;
+	private Integer situacao;
+	private String sexo;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Situacao situacao;
-	
+	@Column(name = "cod_profissao")
+	private Long codProfissao;
 		
-	
-
 	public Long getId() {
 		return id;
 	}
@@ -95,6 +91,38 @@ public class Pessoa {
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+
+	public Integer getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Integer situacao) {
+		this.situacao = situacao;
+	}
+
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public Long getCodProfissao() {
+		return codProfissao;
+	}
+
+	public void setCodProfissao(Long codProfissao) {
+		this.codProfissao = codProfissao;
 	}
 	
 }
